@@ -21,10 +21,19 @@ plan:
       name: 初始化
 
     - type: command
-      name: 初始化后
+      name: 平台变量
       args:
-        - pwd
-        - echo "==========init after=============="
+        - echo "CLOUDIAC_ORG_ID:" ${CLOUDIAC_ORG_ID}
+        - echo "CLOUDIAC_PROJECT_ID:" ${CLOUDIAC_PROJECT_ID}
+        - echo "CLOUDIAC_TEMPLATE_ID:" ${CLOUDIAC_TEMPLATE_ID}
+        - echo "CLOUDIAC_ENV_ID:" ${CLOUDIAC_ENV_ID}
+        - echo ":CLOUDIAC_ENV_NAME" ${}CLOUDIAC_ENV_NAME
+        - echo "CLOUDIAC_ENV_STATUS:" ${CLOUDIAC_ENV_STATUS}
+        - echo "CLOUDIAC_ENV_RESOURCES:" ${CLOUDIAC_ENV_RESOURCES}
+        - echo "CLOUDIAC_COMMIT:" ${CLOUDIAC_COMMIT}
+        - echo "CLOUDIAC_BRANCH:" ${CLOUDIAC_BRANCH}
+        - echo "CLOUDIAC_TASK_ID:" ${CLOUDIAC_TASK_ID}
+        - echo "CLOUDIAC_TF_VERSION:" ${CLOUDIAC_TF_VERSION}
     
     - type: terraformPlan
       name: 预览计划

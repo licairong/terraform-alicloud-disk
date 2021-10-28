@@ -60,8 +60,8 @@ apply:
     - type: terraformApply
       name: Terraform Apply
       
-     - type: ansiblePlay
-       name: Run playbook
+    - type: ansiblePlay
+      name: Run playbook
       
 destroy:
   steps:

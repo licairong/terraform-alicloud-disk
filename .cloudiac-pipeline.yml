@@ -1,0 +1,94 @@
+version: 0.3
+  
+plan:
+  steps:
+    - type: command
+      name: 检出代码前
+      args:
+        - pwd
+        - echo "==========hello cloudiac=============="
+
+    - type: checkout
+      name: 检出代码
+
+    - type: command
+      name: 检出代码后
+      args:
+        - pwd
+        - echo "==========checkout code=============="
+      
+    - type: terraformInit
+      name: 初始化
+
+    - type: command
+      name: 初始化后
+      args:
+        - pwd
+        - echo "==========init after=============="
+    
+    - type: terraformPlan
+      name: 预览计划
+
+
+apply:
+  onSuccess:
+    type: command
+    args:
+      - echo "Job successful"
+      
+  onFail:
+    type: command
+    args:
+      - echo "Job failed"
+      
+  steps:
+    - type: command
+      args:
+        - echo "get somethings"
+        - bash script.sh
+        - curl 127.0.0.1/api/action
+        
+    - type: checkout
+      name: Checkout code
+      
+    - type: terraformInit
+      name: Terraform Init
+    
+    - type: terraformPlan
+      name: Terraform Plan
+    
+    - type: terraformApply
+      name: Terraform Apply
+      
+     - type: ansiblePlay
+       name: Run playbook
+      
+destroy:
+  steps:
+    - type: checkout
+      name: Checkout code
+      
+    - type: terraformInit
+      name: Terraform Init
+    
+    - type: terraformPlan
+      name: Terraform Plan
+      args: -destroy
+    - type: terraformDestroy
+      name: Terraform Destroy
+    
+    - type: command
+      name: Say Bye
+      args: 
+         - 'echo "Bye!"'
+
+scan:
+  steps:
+    - type: scaninit
+    - type: tfscan
+
+
+parse:
+  steps:
+    - type: scaninit
+    - type: tfparse

@@ -1,0 +1,15 @@
+version: 0.1
+templates:
+- name: terraform-alicloud-disk
+  terraform:
+    workdir: ./
+    var:
+      region: ''
+      availability_zone: ''
+      size: ''
+      disk_count: ''
+      name: ''
+      instance_id: ''
+    save_state: true
+  description: 官方提供model库，具体参数配置请参考README文件
+  timeout: 300

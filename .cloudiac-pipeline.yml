@@ -73,7 +73,8 @@ destroy:
     
     - type: terraformPlan
       name: Terraform Plan
-      args: -destroy
+      args: 
+        - destroy
     - type: terraformDestroy
       name: Terraform Destroy
     
